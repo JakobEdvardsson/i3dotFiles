@@ -4,12 +4,14 @@
 typeset -A mode
 # And its content:
 mode=(
-  [Home]="autorandr --load home"
-  [Laptop]="autorandr --load laptop"
-  [Focus]="autorandr --load focus1screen"
-  [Presentation]="autorandr --load dualprez"
-  [4screens]="autorandr --load 4screens"
-  [Cancel]=""
+  	[Laptop (Hybrid)]="autorandr --load Laptop"
+	[Home (Hybrid)]="autorandr --load Home"
+  	[Home (Nvidia)]="autorandr --load Home-Nvidia"
+	[Laptop (Nvidia)]="autorandr --load Laptop-Nvidia"
+  	#[Focus]="autorandr --load focus1screen"
+  	[Presentation]="xrandr --auto"
+  	#[4screens]="autorandr --load 4screens"
+  	[Cancel]=""
 )
 
 mode_nrows=${#mode[@]}
