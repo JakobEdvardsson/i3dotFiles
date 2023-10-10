@@ -174,6 +174,9 @@ bindsym $mod+r mode "resize"
 # start a terminal
 bindsym $mod+Return exec xfce4-terminal
 
+bindsym $mod+Shift+t exec ~/.config/i3/scripts/colorscheme-picker -d ~/Pictures/Wallpaper/
+
+
 # kill focused window
 bindsym $mod+q kill
 
@@ -416,7 +419,8 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
-exec --no-startup-id sleep 1 && feh --bg-fill /home/jakob-arch/Pictures/Wallpaper/Purple.jpg
+# Handled by pywal
+#exec --no-startup-id sleep 1 && feh --bg-fill /home/jakob-arch/Pictures/Wallpaper/Purple.jpg
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -447,6 +451,10 @@ exec --no-startup-id /usr/bin/dunst
 # https://github.com/nwg-piotr/autotiling
 # `yay -S autotiling ;) (it is in AUR)
 exec_always --no-startup-id autotiling
+
+# Pywal
+exec --no-startup-id wal -R
+
 
 # Autostart apps as you like
 #exec --no-startup-id sleep 2 && xfce4-terminal
@@ -500,6 +508,21 @@ for_window [class="urxvt"] border pixel 1
 # color settings for bar and windows #
 ######################################
 
+############################################
+# color settings for PYWAL bar and windows #
+############################################
+
+set_from_resource $color0 i3wm.color0 #000000
+set_from_resource $color1 i3wm.color1 #f0f0f0
+set_from_resource $bg     i3wm.color2 #f0f0f0
+set_from_resource $color3 i3wm.color3 #f0f0f0
+set_from_resource $color4 i3wm.color4 #f0f0f0
+set_from_resource $color5 i3wm.color5 #f0f0f0
+set_from_resource $color6 i3wm.color6 #f0f0f0
+set_from_resource $fg 	  i3wm.color7 #f0f0f0
+set_from_resource $color8 i3wm.color8 #f0f0f0
+
+
 # Define colors variables:
 set $darkbluetrans	#08052b90
 set $darkblue		#08052b
@@ -513,12 +536,29 @@ set $grey		#b0b5bd
 set $mediumgrey		#8b8b8b
 set $yellowbrown	#e1b700
 
+########################
+#Old colors before pywal
+########################
 # define colors for windows:
 #class		        	border		bground		text		indicator	child_border
-client.focused		    	$purple		$darkblue	$white		$purple		$purple
-client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$darkgrey
-client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
-client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
+#client.focused		    	$purple		$darkblue	$white		$purple		$purple
+#client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$darkgrey
+#client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
+#client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
+
+########################
+#New colors with pywal
+########################
+#class		        	border		bground		text		indicator	child_border
+client.focused_inactive $bg     	$bg     	$fg  		$bg       	$bg
+client.focused          $color4     $color4     $fg  		$color4     $color4
+client.unfocused        $bg     	$bg     	$fg  		$bg       	$bg
+client.urgent           $bg     	$bg     	$fg  		$bg       	$bg
+client.placeholder      $bg     	$bg     	$fg  		$bg       	$bg
+
+client.background       $bg
+
+
 
 ############################################
 # bar settings (input comes from i3blocks) #
@@ -530,11 +570,11 @@ bar {
 		font pango: Noto Sans Regular 10
 		status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	    	position top
-	    	i3bar_command i3bar --transparency
+	    	i3bar_command i3bar #--transparency
 # it could be that you have no primary display set: set one (xrandr --output <output> --primary)
 # reference: https://i3wm.org/docs/userguide.html#_tray_output
 		    #tray_output primary
-		    tray_padding 0
+		    tray_padding 2
 
 # When strip_workspace_numbers is set to yes,
 # any workspace that has a name of the form
@@ -543,14 +583,42 @@ strip_workspace_numbers yes
 ##strip_workspace_name no
 
 		    colors {
-		    separator          $purple
-		    background         $darkbluetrans
-		    statusline         $white
-#                          		border 		        bg		txt		indicator
-		focused_workspace	$mediumgrey	   	$grey		$darkgrey	$purple
+
+########################
+#Old colors before pywal
+########################
+		separator           $purple
+		background	        $darkbluetrans
+		statusline	        $white
+#    	              		border 		        bg			txt			indicator
+		focused_workspace	$mediumgrey	   		$grey		$darkgrey	$purple
 		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
 		inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
 		urgent_workspace	$urgentred	    	$urgentred	$white		$purple
+		
+########################
+#New colors with pywal
+########################
+
+#background = ${xrdb:color0:#222}
+#foreground = ${xrdb:color7:#222}
+#foreground-alt = ${xrdb:color7:#222}
+#primary = ${xrdb:color1:#222}
+#secondary = ${xrdb:color2:#222}
+#alert = ${xrdb:color3:#222}
+#trans = #00000000
+#color8 = ${xrdb:color8:#222}
+
+
+
+#		separator           $bg
+		background	        $color0
+#		statusline	        $bg
+#    	              		border 		bg			txt		indicator
+		focused_workspace	$color4		$color4		$color0		$color4
+		active_workspace	$color4     $color4		$color0		$color4
+		inactive_workspace	$color3   	$color3		$color0		$color3
+#		urgent_workspace	$bg	    	$bg			$color0		$bg
 	}
 }
 
