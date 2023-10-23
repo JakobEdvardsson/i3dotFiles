@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+ 
 # Author: Sophie Bernadin-Mercier
 # https://github.com/Shuhala/i3blocks-colorscheme-picker
 #
@@ -77,7 +77,7 @@ selection="$(printf '%s\n' "${!menu[@]}" | sort | "${launch_rofi[@]}")"
 
 if [ ! -z "$selection" ]; then
     pkill dunst
-    wal --cols16 $pywal_options "${menu[$selection]}"
+    wal $pywal_options "${menu[$selection]}"
     dunst &
     sh /opt/oomox/plugins/theme_oomox/change_color.sh -o pywal-colors ~/.cache/wal/colors-oomox
 fi
