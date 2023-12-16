@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-PICTURE=~/Pictures/Lockscreen/Neon-blur.png
+PICTURE=~/Pictures/Wallpaper/RetroSunset.png
 
 i3lock -i $PICTURE
 

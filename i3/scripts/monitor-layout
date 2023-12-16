@@ -4,12 +4,10 @@
 typeset -A mode
 # And its content:
 mode=(
-  	[Laptop (Hybrid)]="autorandr --load Laptop"
-	[Home (Hybrid)]="autorandr --load Home"
-  	[Home (Nvidia)]="autorandr --load Home-Nvidia"
-	[Laptop (Nvidia)]="autorandr --load Laptop-Nvidia"
+  	[Laptop]="exec .config/i3/scripts/Monitor/Monitor-Off"
+	[Home]="exec .config/i3/scripts/Monitor/Monitor-Home"
   	#[Focus]="autorandr --load focus1screen"
-  	[Presentation]="xrandr --auto"
+  	[Auto]="xrandr --auto"
   	#[4screens]="autorandr --load 4screens"
   	[Cancel]=""
 )

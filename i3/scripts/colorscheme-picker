@@ -21,12 +21,13 @@ rofi_colors=(
 	-hlbg "#bbbbbb"
 )
 rofi_options=(
-	-width -30 \
-	-location 3 \
-	-bw 2 \
-	-dmenu -i \
-	-p "${rofi_title}" "${rofi_colors}" \
-	-lines 10
+	#-width -30 \
+	#-location 3 \
+	#-bw 2 \
+	#-dmenu -i \
+	#-p "${rofi_title}" "${rofi_colors}" \
+	#-lines 10
+	-dmenu -p
 )
 
 

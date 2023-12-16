@@ -24,7 +24,7 @@ x-prop-underscan_vborder 0
 output DP-1-2
 crtc 0
 mode 2560x1440
-pos 2560x0
+pos 2560x80
 primary
 rate 164.83
 x-prop-non_desktop 0

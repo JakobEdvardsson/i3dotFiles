@@ -1,0 +1,2 @@
+Fedora sudo update-crypto-policies --set LEGACY
+Arch: nmcli connection modify eduroam 802-1x.phase1-auth-flags 32
